@@ -3,20 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export function TodoItem({ completed, id, title, toggleTodo, deleteTodo, editTodo }) {
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);// state to track editing mode (isVisible)
     const [updatedTitle, setUpdatedTitle] = useState(title);
 
     const handleEdit = () => {
-        setIsEditing(true);
+        setIsEditing(true); // set isEditing to true when edit icon is clicked
     };
 
     const handleCancelEdit = () => {
-        setIsEditing(false);
+        setIsEditing(false); // cancel isEditing
     }
 
     const handleUpdateTodo = () => {
-        editTodo(id, updatedTitle);
-        setIsEditing(false);
+        editTodo(id, updatedTitle);// updated todo with new title
+        setIsEditing(false); // Turn off isEditing (isVisible false)
     }
 
     return (

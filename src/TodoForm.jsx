@@ -20,8 +20,7 @@ export function TodoForm({ onSubmit }) {
         <form onSubmit={handleSubmit} className="new-item-form">
             {/* Input field for entering new item */}
             <div className="form-row">
-              {/* htmlFor allows clicking input field */}
-                <label htmlFor="item">New Item</label> 
+                <label>New Item</label> 
                 <input
                     value={newItem} 
                     onChange={e => setNewItem(e.target.value)}

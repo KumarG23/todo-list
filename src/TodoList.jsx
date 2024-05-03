@@ -11,9 +11,9 @@ export function TodoList({ todos, toggleTodo, deleteTodo, editTodo }) {
           <TodoItem
             {...todo} // Pass all properties of todo as props to TodoItem component
             key={todo.id} // Unique key for each TodoItem
-            toggleTodo={toggleTodo} // toggle todo completion status
+            toggleTodo={toggleTodo} 
             editTodo={editTodo}
-            deleteTodo={deleteTodo} // delete todo
+            deleteTodo={deleteTodo} 
           />
         );
       })}

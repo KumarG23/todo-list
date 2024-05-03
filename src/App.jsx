@@ -32,18 +32,18 @@ export default function App() {
 
   // Function to toggle todo completion status
   function toggleTodo(id, completed) {
-    setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if (todo.id === id) {
-          return { ...todo, completed }; // Update completed status of the todo with the specified id
+    setTodos(currentTodos => {// update state
+      return currentTodos.map(todo => { // use map method to map over currentTodos array
+        if (todo.id === id) { // check if id of current todo matches id of specified id
+          return { ...todo, completed }; // Update completed status of the todo with the specified id to true
         }
-        return todo;
+        return todo; // if id does not match, return todo unchanged
       });
     });
   }
 
   const editTodo = (id, newTitle) => {
-    // Update the todos state using the functional form of setTodos
+    // Update the todos state
     setTodos(currentTodos => {
         // Map over the current todos array to create a new array with updated todos
         return currentTodos.map(todo => {
@@ -63,6 +63,7 @@ export default function App() {
   // Function to delete a todo
   function deleteTodo(id) {
     setTodos(currentTodos => {
+      // use filter method to create new array that contains todos with id that does not match the id we're deleting
       return currentTodos.filter(todo => todo.id !== id); // Remove the todo with the specified id from the todos array
     });
   }
@@ -70,13 +71,10 @@ export default function App() {
   return (
     <div className='card'>
     <h1 className='header'>Todo List</h1>
-      {/* TodoForm component for adding new todos */}
       <TodoForm onSubmit={addTodo} /> 
       {todos.map(todo => (
-        // edit todo form for updating todos.
       <EditTodoForm key={todo.id} editTodo={editTodo} id={todo.id}/> 
       ))}
-      {/* TodoList component to display todos */}
       <TodoList todos={todos} toggleTodo={toggleTodo} editTodo={editTodo} deleteTodo={deleteTodo} />
     </div>
   );

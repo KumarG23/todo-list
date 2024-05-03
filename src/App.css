@@ -5,7 +5,10 @@
   height: 100vh;
   padding: 0;
   margin: auto;
+}
 
+html {
+  background-color: rgb(59, 57, 57);
 }
 
 body{
@@ -14,6 +17,9 @@ body{
 
 input[type="checkbox" i] {
   margin-right: .5rem;
+}
+
+.checkbox {
 }
 
 .list li:has(input:checked) label {
@@ -28,13 +34,12 @@ input[type="checkbox" i] {
   gap: 0.3rem;
   list-style: none;
   padding: 0;
+  color: #ffc800;
 }
 
 .list li {
-  display: flex;
   gap: 0.5rem;
   align-items: center;
-  justify-content: space-between;
   color: #ffc800;
 }
 
@@ -43,17 +48,30 @@ input[type="checkbox" i] {
 }
 
 .item {
-  flex-direction: row;
+  display: flex;
+  align-items: center;
 }
 
 .item:hover {
   transform: translateX(5px);
 }
 
-.edit-icon {
-  margin-left: 3rem;
-  margin-right: .5rem;
+.edit-icon, .delete-icon {
 }
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.edit-icon {
+  margin-left: auto;
+}
+
+.delete-icon {
+  margin-left: 5px;
+}
+
 
 .edit-icon:hover {
   transform: translateY(-3px);
@@ -63,8 +81,12 @@ input[type="checkbox" i] {
   transform: translateY(-3px);
 }
 
+.todo-item {
+  flex-grow: 1;
+}
+
 .card {
-  margin: auto !important;
+  margin: auto;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -87,10 +109,11 @@ h1 {
 
 .form-row {
   color: #ffc800;
+  margin: auto;
 }
 
 label {
-  margin: .5rem;
+  margin-right: .5rem;
 }
 
 .btn {
