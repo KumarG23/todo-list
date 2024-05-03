@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 export const EditTodoForm = ({ editTodo, isVisible, id }) => {
-    // State to manage the value of the input field
-    const [newItem, setNewItem] = useState('');
+    const [newItem, setNewItem] = useState(''); // set state
 
     // Function to handle form submission
     const handleSubmit = (e) => {
@@ -22,10 +21,10 @@ export const EditTodoForm = ({ editTodo, isVisible, id }) => {
         <div>
             {/* Render the form only if isVisible is true */}
             {isVisible && (
-                <form onSubmit={handleSubmit} className="edit-item-form">
+                <form onSubmit={handleSubmit} className="new-item-form">
                     {/* Input field for entering new item */}
                     <div className="form-row">
-                        <label htmlFor="item">Edit Item</label>
+                        <label>Edit Item</label>
                         <input
                             value={newItem}
                             onChange={e => setNewItem(e.target.value)}
