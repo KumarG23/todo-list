@@ -1,21 +1,137 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+  margin: auto;
+
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+body{
+  padding: none;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+input[type="checkbox" i] {
+  margin-right: .5rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.list li:has(input:checked) label {
+  color: gray;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffc800;
+}
+
+.list li:hover {
+  color: #66ff00;
+}
+
+.item {
+  flex-direction: row;
+}
+
+.item:hover {
+  transform: translateX(5px);
+}
+
+.edit-icon {
+  margin-left: 3rem;
+  margin-right: .5rem;
+}
+
+.edit-icon:hover {
+  transform: translateY(-3px);
+}
+
+.delete-icon:hover {
+  transform: translateY(-3px);
+}
+
+.card {
+  margin: auto !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #1100f979, #6401f87e, #ff000069);
+  background-size: 200%, 200%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  animation: glowing 5s infinite;
+  animation: glow 5s infinite;
+  box-sizing: border-box;
+
+}
+
+
+
+h1 {
+  color: #ffc800;
+}
+
+.form-row {
+  color: #ffc800;
+}
+
+label {
+  margin: .5rem;
+}
+
+.btn {
+  background-color: #ffc800;
+  color: #9560e8;
+  margin-top: .5rem;
+  font-weight: bold;
+}
+
+.btn:hover{
+  transform: translateY(-5px);
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px 0 #6304fd;
+  }
+  25% {
+    box-shadow: 0 0 25px 0 #66ff00;
+  }
+  50% {
+    box-shadow: 0 0 50px 0 #ffc800;
+  }
+  75% {
+    box-shadow: 0 0 25px 0 #66ff00;
+  }
+  100% {
+    box-shadow: 0 0 10px 0 #9560e8;
+  }
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 50% 0;
+  }
 }
 
 @keyframes logo-spin {
@@ -25,18 +141,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

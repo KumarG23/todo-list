@@ -1,35 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import './App.css';
+import { TodoForm } from './TodoForm';
+import { TodoList } from './TodoList';
+import { v4 as uuidv4} from 'uuid';
+import { EditTodoForm } from './EditTodoForm';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  // State to manage todos
+  const [todos, setTodos] = useState(() => {
+    // Retrieve todos from local storage on initial render
+    const localValue = localStorage.getItem('ITEMS');
+    if (localValue === null) return []; // If no todos found in local storage, initialize with an empty array
+    return JSON.parse(localValue); // Parse and return todos from local storage
+  });
+
+  // Update local storage when todos state changes
+  useEffect(() => {
+    localStorage.setItem('ITEMS', JSON.stringify(todos));
+  }, [todos]);
+
+  // Function to add a new todo
+  function addTodo(title) {
+    setTodos(currentTodos => {
+     // console.log('Todo: ', currentTodos);
+      return [
+        ...currentTodos,
+        { id: uuidv4(), title, completed: false, isEditing: false }, // Add new todo with generated UUID
+      ];
+    });
+  }
+
+  // Function to toggle todo completion status
+  function toggleTodo(id, completed) {
+    setTodos(currentTodos => {
+      return currentTodos.map(todo => {
+        if (todo.id === id) {
+          return { ...todo, completed }; // Update completed status of the todo with the specified id
+        }
+        return todo;
+      });
+    });
+  }
+
+  const editTodo = (id, newTitle) => {
+    // Update the todos state using the functional form of setTodos
+    setTodos(currentTodos => {
+        // Map over the current todos array to create a new array with updated todos
+        return currentTodos.map(todo => {
+            // Check if the current todo has the same id as the id passed to the function
+            if (todo.id === id) {
+                // If the id matches, create a new todo object with the updated title and set isEditing to false
+                return { ...todo, title: newTitle, isEditing: false };
+            }
+            // If the id does not match, return the current todo unchanged
+            return todo;
+        });
+    });
+};
+
+  
+
+  // Function to delete a todo
+  function deleteTodo(id) {
+    setTodos(currentTodos => {
+      return currentTodos.filter(todo => todo.id !== id); // Remove the todo with the specified id from the todos array
+    });
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className='card'>
+    <h1 className='header'>Todo List</h1>
+      {/* TodoForm component for adding new todos */}
+      <TodoForm onSubmit={addTodo} /> 
+      {todos.map(todo => (
+        // edit todo form for updating todos.
+      <EditTodoForm key={todo.id} editTodo={editTodo} id={todo.id}/> 
+      ))}
+      {/* TodoList component to display todos */}
+      <TodoList todos={todos} toggleTodo={toggleTodo} editTodo={editTodo} deleteTodo={deleteTodo} />
+    </div>
+  );
 }
 
-export default App
+

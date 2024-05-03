@@ -1,4 +1,8 @@
 :root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -42,12 +46,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #ffc800;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: #9560e8;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #66ff00;
 }
 button:focus,
 button:focus-visible {
